@@ -1,0 +1,92 @@
+name: swallpaper
+description: Swallpaper - Cross-platform wallpaper manager for Windows and Android.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Networking
+  http: ^1.2.0
+  dio: ^5.4.0
+  connectivity_plus: ^6.0.0
+
+  # State management
+  provider: ^6.1.0
+  riverpod: ^2.5.0
+  flutter_riverpod: ^2.5.0
+
+  # Storage & cache
+  shared_preferences: ^2.2.0
+  sqflite: ^2.3.0
+  path_provider: ^2.1.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  cached_network_image: ^3.3.0
+
+  # UI Components
+  flutter_staggered_grid_view: ^0.7.0
+  shimmer: ^3.0.0
+  flutter_svg: ^2.0.0
+  lottie: ^3.0.0
+  photo_view: ^0.15.0
+  carousel_slider: ^5.0.0
+  infinite_scroll_pagination: ^4.0.0
+  flutter_animate: ^4.5.0
+  google_fonts: ^6.1.0
+
+  # Video
+  video_player: ^2.8.0
+  chewie: ^1.7.0
+
+  # Device info
+  device_info_plus: ^10.0.0
+  package_info_plus: ^8.0.0
+
+  # Android-specific
+  wallpaper_manager: ^1.0.0
+  flutter_downloader: ^1.11.0
+  permission_handler: ^11.3.0
+
+  # File handling
+  path: ^1.9.0
+  file_picker: ^6.0.0
+  open_file: ^3.3.0
+  url_launcher: ^6.2.0
+
+  # i18n
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.19.0
+
+  # Desktop
+  window_manager: ^0.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.0
+  hive_generator: ^2.0.0
+  mockito: ^5.4.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/animations/
+
+  fonts:
+    - family: NotoSansSC
+      fonts:
+        - asset: assets/fonts/NotoSansSC-Regular.ttf
+        - asset: assets/fonts/NotoSansSC-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/NotoSansSC-Bold.ttf
+          weight: 700

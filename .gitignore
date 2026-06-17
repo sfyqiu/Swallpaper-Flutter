@@ -1,0 +1,49 @@
+# Flutter
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.dart_tool/
+build/
+*.iml
+.idea/
+.metadata
+
+# Android
+android/.gradle/
+android/app/build/
+android/build/
+local.properties
+*.keystore
+key.properties
+
+# Windows
+windows/out/
+windows/runner/Debug/
+windows/runner/Release/
+*.vcxproj.user
+
+# Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log
+*.tmp
+.env
+.env.local
+.env.production
+assets/api_keys.json
