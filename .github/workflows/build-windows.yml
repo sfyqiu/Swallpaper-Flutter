@@ -1,0 +1,60 @@
+name: Build Windows
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.2'
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Inject API keys
+        run: |
+          echo '{
+            "wallhaven": "${{ secrets.WALLHAVEN_KEY }}",
+            "unsplash": "${{ secrets.UNSPLASH_KEY }}",
+            "pexels": "${{ secrets.PEXELS_KEY }}",
+            "nasa": "${{ secrets.NASA_KEY }}"
+          }' > assets/api_keys.json
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Build Windows
+        run: flutter build windows --release
+
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: swallpaper-windows
+          path: build/windows/x64/runner/Release/
+          retention-days: 7
+
+      - name: Package as ZIP
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          Compress-Archive -Path build/windows/x64/runner/Release/* -DestinationPath swallpaper-windows-${{ github.ref_name }}.zip
+
+      - name: Upload release asset
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: swallpaper-windows-*.zip
+          generate_release_notes: true
